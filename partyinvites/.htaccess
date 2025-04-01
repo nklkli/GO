@@ -1,0 +1,4 @@
+DirectoryIndex /
+ 
+RewriteEngine on
+RewriteRule ^(.*) http://127.0.0.1:5000/foo/$1 [P]

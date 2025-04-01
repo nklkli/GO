@@ -18,10 +18,11 @@ func main() {
 	loadTemplates()
 
 	http.HandleFunc("/", welcomeHandler)
-	http.HandleFunc("/list", listHandler)
-	http.HandleFunc("/form", formHandler)
+	http.HandleFunc("/foo/list", listHandler)
+	http.HandleFunc("/foo/form", formHandler)
 
-	err := http.ListenAndServe(":5000", nil)
+	err := http.ListenAndServe("127.0.0.1:5000", nil)
+
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -84,9 +85,9 @@ func loadTemplates() {
 	}
 }
 
-func welcomeHandler(writer http.ResponseWriter, request *http.Request) {
+func welcomeHandler(writer http.ResponseWriter, _ *http.Request) {
 	templates["welcome"].Execute(writer, nil)
 }
-func listHandler(writer http.ResponseWriter, request *http.Request) {
+func listHandler(writer http.ResponseWriter, _ *http.Request) {
 	templates["list"].Execute(writer, responses)
 }
